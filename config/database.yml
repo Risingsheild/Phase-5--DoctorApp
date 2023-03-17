@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: Doctor_App_Project_production
-  username: Doctor_App_Project
-  password: <%= ENV["DOCTOR_APP_PROJECT_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
