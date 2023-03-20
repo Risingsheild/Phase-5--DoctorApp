@@ -1,3 +1,4 @@
 class PrescriptionSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :refills
+  belongs_to :patient
 end

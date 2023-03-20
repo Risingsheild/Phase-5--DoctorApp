@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :prescriptions, only: [:index]
+  resources :prescriptions, only: [:index, :create]
+  resources :patients, only: [:index, :show, :create]
   resources :appointments
-
   
 
   post "/login", to: "sessions#create"
