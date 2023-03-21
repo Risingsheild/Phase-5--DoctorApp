@@ -1,5 +1,5 @@
 class PrescriptionsController < ApplicationController
-    skip_before_action :authorize
+    skip_before_action :authorized
 
     def index 
         render json: Prescription.all, status: :ok

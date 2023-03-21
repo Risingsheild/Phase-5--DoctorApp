@@ -12,7 +12,7 @@ puts "Seeding Users"
 User.create(username: "Nick", password: "123")
 User.create(username: "Katie", password: "456")
 
-puts "Patients"
+puts " seeding Patients"
 
 20.times do 
     Patient.create(
@@ -22,9 +22,9 @@ puts "Patients"
     )
 end
 
-puts "Seeding Appoitments"
+puts "Seeding Appointments"
     10.times do 
-        Appoitment.create(
+        Appointment.create(
             user_id: 1,
             patient_id: rand(1..10),
             description: Faker::Cannabis.health_benefit,
@@ -33,7 +33,7 @@ puts "Seeding Appoitments"
     end 
 
     10.times do 
-        Appoitment.create(
+        Appointment.create(
             user_id: 2,
             patient_id: rand(11..20),
             description: Faker::Cannabis.health_benefit,
