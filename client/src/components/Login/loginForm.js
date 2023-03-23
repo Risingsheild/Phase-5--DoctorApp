@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 
-function Login(){
+function LoginForm(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector(state => state.users.entities);
@@ -95,4 +95,4 @@ return (
 );
 }
 
-export default Login;
+export default LoginForm;

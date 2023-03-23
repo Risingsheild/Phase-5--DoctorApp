@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { signup } from "../../features/Users/userSlice";
 
 
-function UserInfo(){
+function SignupForm(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector(state => state.users.entities);
@@ -64,4 +64,4 @@ useEffect(() => {
   );
 }
 
-export default UserInfo
+export default SignupForm
