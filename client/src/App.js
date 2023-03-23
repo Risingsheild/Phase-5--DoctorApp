@@ -8,9 +8,11 @@ import {fetchUser} from './features/Users/userSlice'
 import LoginForm from './components/Login/loginForm';
 import SignupForm from './components/Signup/signupForm';
 import NavBar from './components/NavBar/Navbar';
+import Home from './components/Home/Home';
 
 
 import './App.css';
+
 
 
 
@@ -25,6 +27,7 @@ function App() {
     <div className="App">
       <NavBar/>
       <Routes>
+        <Route exact path={'/'} element={<Home/>}/>
         <Route exact path={'/login'} element={<LoginForm />}/>
         <Route exact path={"/signup"} element={<SignupForm/>}/>
       </Routes>

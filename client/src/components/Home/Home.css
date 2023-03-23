@@ -1,0 +1,9 @@
+.information{
+    font-weight: bold;
+    background-color: rgb(49, 106, 177);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 35px;
+  }
