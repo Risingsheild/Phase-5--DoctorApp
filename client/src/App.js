@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {BrowserRouter as Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import {fetchUser} from './features/Users/userSlice'

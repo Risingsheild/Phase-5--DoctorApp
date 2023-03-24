@@ -23,11 +23,10 @@ export const newPatient = createAsyncThunk(
 );
 
 const patientsSlice = createSlice({
-  name: patients,
+  name: 'patients',
   initialState: {
     entities: [],
-    errorMessages: null,
-    status: idle,
+    errorMessages: null
   },
   reducers: {},
   extraReducers(builder) {
