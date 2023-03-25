@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { login } from "../../features/Users/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,7 +16,7 @@ import {
 function LoginForm(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const user = useSelector(state => state.users.entities);
+    // const user = useSelector(state => state.users.entities);
     const errors = useSelector(state => state.users.errorMessages);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -26,17 +26,12 @@ function LoginForm(){
         errors: null
     }
 
-    useEffect(() => {
-        if(user && !user.errors){
-            navigate('/');
-            setUsername('');
-            setPassword('');
-        }
-    }, [user, navigate]);
+  
 
     function handleSubmit(e){
         e.preventDefault();
         dispatch(login(userData));
+        navigate('/') 
     }
 
 

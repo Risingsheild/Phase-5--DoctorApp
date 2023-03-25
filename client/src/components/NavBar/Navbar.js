@@ -20,6 +20,7 @@ function NavBar() {
           <header className="header">Hello, Dr. {user.username}</header>
           <div className="navlinks">
             <NavLink to="/">Home</NavLink>
+            <NavLink to='/patients'>My Patient List</NavLink>
             {/* Add the Rest of the Links Here */}
             <button onClick={handleLogoutClick}>Log Out</button>
           </div>

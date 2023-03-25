@@ -75,6 +75,16 @@ const usersSlice = createSlice({
   },
 });
 
+export const selectUser = (state) => {
+  const user = state.user.entities
+  return user && !user.errors ? user : null
+}
+
+export const selectErrors = (state) =>{
+  const user = state.user.entities;
+  return user && user.errors ? user.errors : [];
+}
+
 export const {reset} = usersSlice.actions;
 
 export default usersSlice.reducer;

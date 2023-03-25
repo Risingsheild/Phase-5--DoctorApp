@@ -32,9 +32,7 @@ const patientsSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchPatients.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.errorMessages = action.payload.errors;
-        }
+        state.entities = action.payload; 
       })
       .addCase(newPatient.fulfilled, (state, action) => {
         if (action.payload.errors) state.errorMessages = action.payload.errors;
