@@ -7,7 +7,7 @@ ruby "2.7.4"
 gem "rails", "~> 7.0.4"
 
 gem 'faker'
-
+gem 'pry'
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 

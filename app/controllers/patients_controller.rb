@@ -23,7 +23,7 @@ class PatientsController < ApplicationController
     private
 
     def patient_params
-        params.permit(:name, :phone, :dob, :user_id)
+        params.permit(:name, :phone, :dob)
     
     end
 

@@ -4,4 +4,6 @@ class Patient < ApplicationRecord
     has_many :prescriptions
 
     validates :name, :phone, :dob, presence: true
+
+    scope :my_appts, -> { where(user_id: session[:user_id]) }
 end

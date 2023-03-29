@@ -1,4 +1,4 @@
-import PatientCard from "./PatientCard";
+// import PatientCard from "./PatientCard";
 import { useSelector } from "react-redux";
 
 function PatientList() {
@@ -9,9 +9,11 @@ function PatientList() {
     <div>
       <h2>My Patients</h2>
 
-      {patients}
+      
       <ul>
-        {" "}
+        
+        {patients}
+        {/* {" "}
         {patients.map((p) => {
           <PatientCard
             key={p.id}
@@ -22,7 +24,7 @@ function PatientList() {
             appointments={p.appointments}
             prescriptions={p.prescriptions}
           />;
-        })}
+        })} */}
       </ul>
     </div>
   );

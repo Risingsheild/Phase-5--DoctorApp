@@ -17,7 +17,7 @@ function LoginForm(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // const user = useSelector(state => state.users.entities);
-    const errors = useSelector(state => state.users.errorMessages);
+    const errors = useSelector(state => state.users.errors);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const userData = {
