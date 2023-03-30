@@ -9,6 +9,6 @@ class AppointmentSerializer < ActiveModel::Serializer
     p[:phone] = self.object.patient.phone
     p
   end
-  belongs_to :patient
+  #belongs_to :patient
   belongs_to :user
 end
