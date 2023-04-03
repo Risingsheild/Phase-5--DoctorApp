@@ -1,20 +1,21 @@
 // import PatientCard from "./PatientCard";
 import { useSelector } from "react-redux";
+import { selectUser } from "../Users/userSlice";
 
 function PatientList() {
-  const patients = useSelector((state) => state.patients.entities);
-  console.log(patients);
+    const user = useSelector(selectUser)
+    console.log('My patients',user.patients);
 
   return (
     <div>
       <h2>My Patients</h2>
-
+  
       
       <ul>
         
-        {patients}
+        
         {/* {" "}
-        {patients.map((p) => {
+        {user.patients.map((p) => {
           <PatientCard
             key={p.id}
             patient={p}
@@ -22,8 +23,6 @@ function PatientList() {
             name={p.name}
             phone={p.phone}
             appointments={p.appointments}
-            prescriptions={p.prescriptions}
-          />;
         })} */}
       </ul>
     </div>

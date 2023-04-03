@@ -46,9 +46,19 @@ puts "Seeding Appointments"
 
 
  puts "Seeding Prescriptions"
-    20.times do 
+    10.times do 
         Prescription.create(
-            patient_id: rand(1..Patient.all.size),
+            patient_id: rand(1..10),
+            user_id: 1,
+            name: Faker::Beer.name,
+            refills: rand(1..3)
+        )
+    end
+
+    10.times do 
+        Prescription.create(
+            patient_id: rand(11..20),
+            user_id: 2,
             name: Faker::Beer.name,
             refills: rand(1..3)
         )
