@@ -1,12 +1,12 @@
 class PrescriptionsController < ApplicationController
-    skip_before_action :authorized
+    #skip_before_action :authorized
 
     def index 
         render json: Prescription.all, status: :ok
     end
 
     def create 
-        prescription = Prescription.create!(prescription_params)
+        prescription = @current_user.prescriptions.create!(prescription_params)
         if prescription 
             render json: prescription
         else

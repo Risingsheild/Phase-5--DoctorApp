@@ -5,5 +5,5 @@ class Patient < ApplicationRecord
 
     validates :name, :phone, :dob, presence: true
 
-    scope :my_appts, -> { where(user_id: session[:user_id]) }
+    # scope :my_appts, -> { where(user_id: session[:user_id]) }
 end
