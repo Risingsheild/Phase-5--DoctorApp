@@ -1,37 +1,43 @@
 import { useState } from "react";
+import ReactCardFlip from "react-card-flip"
+import './PatientCard.css'
 
-function PatientCard({ id, name, phone, dob, appointments, users, prescriptions} ) {
-  const [expand, setExpand] = useState(false);
+function PatientCard({ patient }) {
+  const [isFlipped, setIsFlipped] = useState(false);
 
-  function handleClick() {
-    setExpand(!expand);
+  const patientAppt = patient.appointments.map((element) => (
+    <li key={element.id} style={{ fontWeight: "bold" }}>
+      {element.startDate}
+    </li>
+  ));
+  console.log(patientAppt);
+
+  function handleFlipped() {
+    setIsFlipped(!isFlipped);
   }
 
+
   return (
-    <div className="patient">
-      <div className="container">
-        <button
-          className={expand ? "bttn-clicked" : "bttn"}
-          onClick={handleClick}
-        >
-          {name} ({dob}) <br></br> {phone}
-          <span className={expand ? "hamburger cross" : "hamburger"}>
-            <span className="line line--top"></span>
-            <span className="line line--middle"></span>
-            <span className="line line--bottom"></span>
-          </span>
-        </button>
+
+    <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal'>
+    <div className="Card" onClick={handleFlipped}>
+      <div className="patientHeader">
+     <h3> Name: {patient.name}</h3> <p>Date of Birth : ({patient.dob})</p>{" "}
+     <p> Phone Number : {patient.phone}</p>
       </div>
-        <div className="expanded">
-
-            <ul>
-            {appointments.startDate} <br></br> <li>{prescriptions}</li>
-            </ul>
-
-
-        </div>
+      <button onClick={handleFlipped}> for Patients Appointments
+      </button>
+      </div>
+      <div className="Card" onClick={handleFlipped}>
+     <h3> Name: {patient.name}</h3>
+      Patient Appointments:
+      {patientAppt}
+      <br></br>
+      <button onClick={handleFlipped}> Flip to Patient Demographics</button>
     </div>
+  </ReactCardFlip>
   );
 }
+
 
 export default PatientCard;
