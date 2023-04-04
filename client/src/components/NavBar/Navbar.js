@@ -21,6 +21,7 @@ function NavBar() {
           <div className="navlinks">
             <NavLink to="/">Home</NavLink>
             <NavLink to='/patients'>My Patient List</NavLink>
+            <NavLink to='/appointments'>Upcoming Appointments</NavLink>
             {/* Add the Rest of the Links Here */}
             <button onClick={handleLogoutClick}>Log Out</button>
           </div>

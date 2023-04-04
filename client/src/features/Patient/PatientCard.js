@@ -10,7 +10,12 @@ function PatientCard({ patient }) {
       {element.startDate}
     </li>
   ));
-  console.log(patientAppt);
+
+  const patientPrescriptions = patient.prescriptions.map((element) => (
+    <li key={element.id} style={{ fontWeight: "bold" }}>
+      {element.name}, <p>Refills Allowed {element.refills}</p>
+    </li>
+  ));
 
   function handleFlipped() {
     setIsFlipped(!isFlipped);
@@ -25,7 +30,7 @@ function PatientCard({ patient }) {
      <h3> Name: {patient.name}</h3> <p>Date of Birth : ({patient.dob})</p>{" "}
      <p> Phone Number : {patient.phone}</p>
       </div>
-      <button onClick={handleFlipped}> for Patients Appointments
+      <button onClick={handleFlipped}> Click Card for Patients Appointments
       </button>
       </div>
       <div className="Card" onClick={handleFlipped}>
@@ -33,7 +38,10 @@ function PatientCard({ patient }) {
       Patient Appointments:
       {patientAppt}
       <br></br>
-      <button onClick={handleFlipped}> Flip to Patient Demographics</button>
+      Patient Prescriptions:
+      {patientPrescriptions}
+      <br></br>
+      <button onClick={handleFlipped}> Click Card for Patient Demographics</button>
     </div>
   </ReactCardFlip>
   );

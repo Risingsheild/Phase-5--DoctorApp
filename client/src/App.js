@@ -10,6 +10,7 @@ import SignupForm from './components/Signup/signupForm';
 import NavBar from './components/NavBar/Navbar';
 import Home from './components/Home/Home';
 import PatientList from './features/Patient/PatientList';
+import AppointmentList from './features/Appointment/AppointmentList';
 
 import './App.css';
 
@@ -34,6 +35,7 @@ function App() {
         <Route exact path={'/login'} element={<LoginForm />}/>
         <Route exact path={"/signup"} element={<SignupForm/>}/>
         <Route exact path={"/patients"} element={<PatientList/>}/>
+        <Route exact path={"/appointments"} element={<AppointmentList/>}/>
       </Routes>
 
 

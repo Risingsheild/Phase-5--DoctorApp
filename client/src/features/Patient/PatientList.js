@@ -21,7 +21,9 @@ function PatientList() {
             dob={p.dob}
             name={p.name}
             phone={p.phone}
-            appointments={p.appointments}/>
+            appointments={p.appointments}
+            prescriptions={p.prescriptions}/>
+            
         ))}
       </div>
     </div>
