@@ -40,7 +40,10 @@ export const logout = createAsyncThunk("users/logout", async () => {
 const usersSlice = createSlice({
   name: "users",
   initialState: {
-    entities: null,
+    entities: {
+      patients: [],
+      appointments: []
+    },
     errorMessages: null,
   },
   reducers: {

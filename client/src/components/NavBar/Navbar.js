@@ -19,9 +19,9 @@ function NavBar() {
         <div>
           <header className="header">Hello, Dr. {user.username}</header>
           <div className="navlinks">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to='/patients'>My Patient List</NavLink>
-            <NavLink to='/appointments'>Upcoming Appointments</NavLink>
+            <NavLink to="/"><button>Home</button></NavLink>
+            <NavLink to='/patients'><button>My Patient List</button></NavLink>
+            <NavLink to='/appointments'><button>Upcoming Appointments</button></NavLink>
             {/* Add the Rest of the Links Here */}
             <button onClick={handleLogoutClick}>Log Out</button>
           </div>
