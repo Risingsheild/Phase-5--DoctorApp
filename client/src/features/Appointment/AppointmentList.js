@@ -1,22 +1,41 @@
-
 import { useSelector } from "react-redux";
 import { selectUser } from "../Users/userSlice";
+import AppointmentCard from "./AppointmentCard";
+import './Appointment.css'
 
-function AppointmentList(){
-    const user = useSelector(selectUser)
-    console.log('My Appointments',user.appointments);
-    return (
-        <div>
-          <h2>My Appointments</h2>
-      
-          
-          <div className="patientList">
-          </div>
+
+
+function AppointmentList() {
+  const user = useSelector(selectUser);
+
+    const appointments = user.appointments
+    console.log('my Appts',appointments);
+
+    const sortedAppointments = Object.keys(appointments)
+      .sort((a, b) => appointments[a].startDate - appointments[b].startDate)
+      .reduce((result, key) => {
+        result[key] = appointments[key];
+        return result
+      }, {})
+
+      console.log('Sorted Appointments', sortedAppointments);
+  return (
+    <div>
+      <h2>My Appointments</h2>
+
+      <div className="AppointmentList">
+        {user.appointments.map((a) => (
+          <AppointmentCard
+            key={a.id}
+            appointment={a}
+            startDate={a.startDate}
+            description={a.description}
+            patient={a.patient}
+          />
+        ))}
         </div>
-      );
-    }
+    </div>
+  );
+}
 
-
-
-
-export default AppointmentList
+export default AppointmentList;

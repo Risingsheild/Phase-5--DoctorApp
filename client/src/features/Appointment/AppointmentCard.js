@@ -1,21 +1,27 @@
-import { useDispatch } from "react-redux";
-import { deleteAppointment } from "./appointmentSlice";
+import { useState } from "react";
+import { selectUser, ondeleteAppointment } from "../Users/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+// import { deleteAppointment } from "./appointmentSlice";
 import EditAppt from "./EditAppt";
 
 function AppointmentCard({ appointment }) {
+  const user = useSelector(selectUser)
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
 
   function exitUpdateForm() {
     setIsEditing(false);
   }
-
+console.log(user.appointments);
+  
   function handleDeleteClick() {
-    dispatch(deleteAppointment(appointment));
+    dispatch(ondeleteAppointment())
+    
+    // dispatch(deleteAppointment(appointment));
   }
 
   return  (
-  <div className='appointment-frame'>
+  <div className='Card'>
   {isEditing ? (
     <EditAppt appointment={appointment} onExitForm={exitUpdateForm} />
   ) : (

@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { login } from "../../features/Users/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-
+import { selectErrors } from "../../features/Users/userSlice";
 
 import {
   Button,
@@ -17,13 +17,13 @@ function LoginForm(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // const user = useSelector(state => state.users.entities);
-    const errors = useSelector(state => state.users.errors);
+    const errors = useSelector(selectErrors);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const userData = {
         username: username,
         password: password,
-        errors: null
+        errors: " "
     }
 
   

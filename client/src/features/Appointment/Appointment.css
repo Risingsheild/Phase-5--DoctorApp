@@ -1,0 +1,16 @@
+.Card {
+    background-color: rgb(242, 194, 158);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin: 1em;
+  }
+  .Card:hover {
+    box-shadow: 0 16px 32px 0 rgba(135, 5, 221, 0.733);
+  }
+
+  .AppointmentList{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    }

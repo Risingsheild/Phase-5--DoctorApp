@@ -36,8 +36,8 @@ export const updateAppointment = createAsyncThunk(
 
 export const deleteAppointment = createAsyncThunk(
   "appointment/deleteAppointment",
-  async (payload) => {
-    const r = await fetch(`appoitments/${payload.id}`, {
+  async (appointment) => {
+    const r = await fetch(`appoitments/${appointment}`, {
       method: "DELETE",
     });
     return await r.json();
@@ -48,7 +48,7 @@ const appointmentsSlice = createSlice({
   name: "appointments",
   initialState: {
     entities: [],
-    errorMessages: null,
+    errorMessages: [],
   },
   reducers: {},
   extraReducers(builder) {
@@ -63,7 +63,11 @@ const appointmentsSlice = createSlice({
       })
       .addCase(updateAppointment.fulfilled, (state, action) => {
         if (action.payload.errors) state.errorMessages = action.payload.errors;
-      });
+      })
+      .addCase(deleteAppointment.fulfilled, (state, action) => {
+        if (action.payload.errors) state.errorMessages = action.payload.errors;
+      }
+      );
   },
 });
 
