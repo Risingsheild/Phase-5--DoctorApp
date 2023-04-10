@@ -47,6 +47,13 @@ const usersSlice = createSlice({
     errorMessages: [],
   },
   reducers: {
+    addPatient(state, action){
+      return {
+        ...state,
+        entities: {...state.entities.patients, patient: action.payload},
+      }
+    },
+
     addAppointment(state, action) {
       return {
         ...state,
@@ -105,6 +112,6 @@ export const selectErrors = (state) => {
   return user && user.errors ? user.errors : [];
 };
 
-export const { addAppointment, ondeleteAppointment } = usersSlice.actions;
+export const { addAppointment, ondeleteAppointment, addPatient } = usersSlice.actions;
 
 export default usersSlice.reducer;

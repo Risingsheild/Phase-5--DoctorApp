@@ -3,7 +3,7 @@ import {Routes, Route} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import {fetchUser} from './features/Users/userSlice'
-// import { fetchPatients } from './features/Patient/patientSlice';
+import { fetchPatients } from './features/Patient/patientSlice';
 
 import LoginForm from './components/Login/loginForm';
 import SignupForm from './components/Signup/signupForm';
@@ -11,8 +11,12 @@ import NavBar from './components/NavBar/Navbar';
 import Home from './components/Home/Home';
 import PatientList from './features/Patient/PatientList';
 import AppointmentList from './features/Appointment/AppointmentList';
+import ApptForm from './components/Forms/ApptForm';
+import PatientForm from './components/Forms/PatientForm';
 
 import './App.css';
+
+
 
 
 
@@ -24,7 +28,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchUser());
-    // dispatch(fetchPatients())
+    dispatch(fetchPatients())
   }, [dispatch]);
 
   return (
@@ -36,6 +40,8 @@ function App() {
         <Route exact path={"/signup"} element={<SignupForm/>}/>
         <Route exact path={"/patients"} element={<PatientList/>}/>
         <Route exact path={"/appointments"} element={<AppointmentList/>}/>
+        <Route exact path={'/apptForm'} element={<ApptForm/>}/>
+        <Route exact path={'/patientForm'} element={<PatientForm/>}/>
       </Routes>
 
 

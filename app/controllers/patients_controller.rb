@@ -2,7 +2,7 @@ class PatientsController < ApplicationController
     #skip_before_action :authorized, only: [:index, :show]
 
     def index
-        render json: @current_user.patients.all
+        render json: Patient.all
     end
 
     def show
@@ -11,7 +11,7 @@ class PatientsController < ApplicationController
     end
 
     def create
-        patient = @current_user.patients.create!(patient_params)
+        patient = Patient.create!(patient_params)
         if patient
             render json: patient, status: :created 
         else 
