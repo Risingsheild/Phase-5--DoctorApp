@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { login } from "../../features/Users/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { selectErrors } from "../../features/Users/userSlice";
+
 
 import {
   Button,
@@ -16,8 +16,8 @@ import {
 function LoginForm(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const user = useSelector(state => state.users.entities);
-    const errors = useSelector(selectErrors);
+    const errors = useSelector(state => state.users.errorMessages);
+    const user = useSelector(state => state.users.entities)
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const userData = {
@@ -26,12 +26,17 @@ function LoginForm(){
         errors: " "
     }
 
-  
+    useEffect(() => {
+      if(user && !user.errors){
+        navigate('/');
+        setUsername('');
+        setPassword('');
+      }
+    }, [user, navigate]);
 
     function handleSubmit(e){
         e.preventDefault();
         dispatch(login(userData));
-        navigate('/') 
     }
 
 
@@ -87,7 +92,7 @@ return (
         </Grid>
       </Grid>
     </Container> 
-    <ul style={{ fontSize: "1.5rem", fontWeight: "bold", color: "red", background: "white"}}>{errors}</ul>
+    {errors?.map((err) => ( <h3 key={err}>{err}</h3>))}
     </div>
 );
 }
