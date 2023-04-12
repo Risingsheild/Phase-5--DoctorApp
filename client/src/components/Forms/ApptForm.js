@@ -52,9 +52,9 @@ console.log(startDate);
       <label>Patient</label>
       <Select
         className="patient"
-        onChange={handlePatientChange}
-        options={patientNames}
-      />
+        onChange={handlePatientChange} options={patientNames}>
+       
+    </Select>
       <br></br>
       <label>Reason For Appointment:</label>
       <input

@@ -63,6 +63,12 @@ const usersSlice = createSlice({
         },
       };
     },
+    onUpdateAppointment(state, action) {
+      return {
+        
+      }
+    },
+
     ondeleteAppointment(state, action) {
       return {
         ...state,

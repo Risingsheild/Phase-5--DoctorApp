@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { selectUser, ondeleteAppointment } from "../Users/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-// import { deleteAppointment } from "./appointmentSlice";
+import { deleteAppointment } from "./appointmentSlice";
 import EditAppt from "./EditAppt";
 
 function AppointmentCard({ appointment }) {
@@ -12,10 +12,11 @@ function AppointmentCard({ appointment }) {
   function exitUpdateForm() {
     setIsEditing(false);
   }
-console.log(user.appointments);
+console.log('Appt Card', appointment.id);
   
   function handleDeleteClick() {
-    dispatch(ondeleteAppointment())
+    dispatch(ondeleteAppointment(appointment.id))
+    dispatch(deleteAppointment(appointment.id))
     
     // dispatch(deleteAppointment(appointment));
   }
