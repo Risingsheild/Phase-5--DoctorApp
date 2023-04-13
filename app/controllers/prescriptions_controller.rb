@@ -6,7 +6,7 @@ class PrescriptionsController < ApplicationController
     end
 
     def create 
-        prescription = @current_user.prescriptions.create!(prescription_params)
+        prescription = Prescription.create!(prescription_params)
         if prescription 
             render json: prescription
         else
@@ -18,7 +18,7 @@ class PrescriptionsController < ApplicationController
     private 
 
     def prescription_params
-        params.permit(:name, :refills, :patient_id)
+        params.permit(:name, :refills, :patient_id, :user_id)
     end
 
     

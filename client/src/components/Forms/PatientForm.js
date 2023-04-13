@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPatient } from "../../features/Users/userSlice";
+// import { addPatient } from "../../features/Users/userSlice";
 import { newPatient } from "../../features/Patient/patientSlice";
 
 function PatientForm() {
@@ -21,7 +21,7 @@ function PatientForm() {
       };
     console.log('PAyload', payload);
     dispatch(newPatient(payload));
-    dispatch(addPatient(payload));
+    // dispatch(addPatient(payload));
   }
   return (
     <form onSubmit={handleSubmitPatient}>

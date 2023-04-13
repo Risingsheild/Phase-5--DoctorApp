@@ -47,12 +47,12 @@ const usersSlice = createSlice({
     errorMessages: [],
   },
   reducers: {
-    addPatient(state, action) {
-      return {
-        ...state,
-        entities: { ...state.entities.patients, patient: action.payload },
-      };
-    },
+    // addPatient(state, action) {
+    //   return {
+    //     ...state,
+    //     entities: { ...state.entities.patients, patient: action.payload },
+    //   };
+    // },
 
     addAppointment(state, action) {
       return {

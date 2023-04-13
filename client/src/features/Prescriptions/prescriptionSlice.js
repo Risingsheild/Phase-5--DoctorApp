@@ -4,7 +4,7 @@ import { headers } from "../../Gloabals";
 export const newPrescription = createAsyncThunk(
   "prescription/newPrescription",
   async (payload) => {
-    const r = await fetch("/prescription", {
+    const r = await fetch("/prescriptions", {
       method: "POST",
       headers: headers,
       body: JSON.stringify(payload),
