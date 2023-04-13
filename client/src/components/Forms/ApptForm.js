@@ -17,7 +17,7 @@ function ApptForm() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
-console.log(startDate);
+  console.log(startDate);
 
   const patientNames = allPatients.map(({ name, id }) => ({ id, name }));
   console.log("Names", patientNames);

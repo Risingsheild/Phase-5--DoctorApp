@@ -9,7 +9,7 @@ function AppointmentList() {
   const user = useSelector(selectUser);
 
     const appointments = user.appointments
-    console.log('my Appts',appointments);
+    //console.log('my Appts',appointments);
 
     const sortedAppointments = Object.keys(appointments)
       .sort((a, b) => appointments[a].startDate - appointments[b].startDate)
@@ -18,7 +18,7 @@ function AppointmentList() {
         return result
       }, {})
 
-      console.log('Sorted Appointments', sortedAppointments);
+     // console.log('Sorted Appointments', sortedAppointments);
   return (
     <div>
       <h2>My Appointments</h2>

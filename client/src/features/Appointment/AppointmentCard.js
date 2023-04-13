@@ -12,13 +12,10 @@ function AppointmentCard({ appointment }) {
   function exitUpdateForm() {
     setIsEditing(false);
   }
-console.log('Appt Card', appointment.id);
   
   function handleDeleteClick() {
     dispatch(ondeleteAppointment(appointment.id))
     dispatch(deleteAppointment(appointment.id))
-    
-    // dispatch(deleteAppointment(appointment));
   }
 
   return  (

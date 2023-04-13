@@ -47,11 +47,11 @@ const usersSlice = createSlice({
     errorMessages: [],
   },
   reducers: {
-    addPatient(state, action){
+    addPatient(state, action) {
       return {
         ...state,
-        entities: {...state.entities.patients, patient: action.payload},
-      }
+        entities: { ...state.entities.patients, patient: action.payload },
+      };
     },
 
     addAppointment(state, action) {
@@ -64,9 +64,14 @@ const usersSlice = createSlice({
       };
     },
     onUpdateAppointment(state, action) {
-      return {
-        
-      }
+      console.log('userSlice', action.payload);
+      
+      
+      // const existingAppt = state.entities.map((appt) => appt.id === id);
+      // if (existingAppt) {
+      //   existingAppt.description = description;
+      //   existingAppt.startDate = startDate;
+      // }
     },
 
     ondeleteAppointment(state, action) {
@@ -118,6 +123,11 @@ export const selectErrors = (state) => {
   return user && user.errors ? user.errors : [];
 };
 
-export const { addAppointment, ondeleteAppointment, addPatient } = usersSlice.actions;
+export const {
+  addAppointment,
+  ondeleteAppointment,
+  addPatient,
+  onUpdateAppointment,
+} = usersSlice.actions;
 
 export default usersSlice.reducer;

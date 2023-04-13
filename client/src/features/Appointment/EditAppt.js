@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { updateAppointment } from "./appointmentSlice";
+import { onUpdateAppointment } from "../Users/userSlice";
 
 function EditAppt({ appointment, onExitForm }) {
   //   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const params = useParams();
+  console.log('Edit', appointment);
+
+  const appt = appointment.params
+  console.log('appt', appt);
 
   const [description, setDescription] = useState(appointment.description);
   const [startDate, setStartDate] = useState(appointment.startDate);
@@ -21,9 +26,9 @@ function EditAppt({ appointment, onExitForm }) {
 
     const payload = {
       appointment: updatedAppt,
-      patient_id: params.patient_id,
     };
     dispatch(updateAppointment(payload));
+    dispatch(onUpdateAppointment(payload))
     onExitForm();
   }
   return (

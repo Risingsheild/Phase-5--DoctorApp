@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPatient, selectUser } from "../../features/Users/userSlice";
+import { addPatient } from "../../features/Users/userSlice";
 import { newPatient } from "../../features/Patient/patientSlice";
 
 function PatientForm() {
@@ -10,7 +10,7 @@ function PatientForm() {
   const errors = useSelector((state) => state.patients.errorMessages);
 
   const dispatch = useDispatch();
- const user = useSelector(selectUser);
+  console.log(name, dob, phone);
 
   function handleSubmitPatient(e) {
     e.preventDefault();
@@ -18,12 +18,13 @@ function PatientForm() {
       dob: dob,
       phone: phone,
       name: name,
-    };
+      };
+    console.log('PAyload', payload);
     dispatch(newPatient(payload));
     dispatch(addPatient(payload));
   }
   return (
-    <form>
+    <form onSubmit={handleSubmitPatient}>
       <h3>Patient DemoGraphics Form</h3>
       <label>Name:</label>
       <input
