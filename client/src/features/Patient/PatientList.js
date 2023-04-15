@@ -9,8 +9,11 @@ function PatientList() {
 
   return (
     <div>
-      <h2>My Patients</h2>
-  
+<h2>My Patients</h2>
+  {/* <form>
+  <input type="text" placeholder="Search..."/>
+  <button type="submit">Search</button>
+</form> */}
       
       <div className="patientList">
         

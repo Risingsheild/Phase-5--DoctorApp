@@ -64,14 +64,21 @@ const usersSlice = createSlice({
       };
     },
     onUpdateAppointment(state, action) {
-      console.log('userSlice', action.payload);
-      
-      
-      // const existingAppt = state.entities.map((appt) => appt.id === id);
-      // if (existingAppt) {
-      //   existingAppt.description = description;
-      //   existingAppt.startDate = startDate;
-      // }
+      console.log("userSlice Appt", action.payload);
+      const updatedAppts = state.entities.appointments.map((appt) => {
+        if (appt.id === action.payload.id) {
+          return action.payload;
+        } else {
+          return appt;
+        }
+      });
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          appointments: updatedAppts,
+        },
+      }
     },
 
     ondeleteAppointment(state, action) {

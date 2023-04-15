@@ -1,4 +1,3 @@
-import Select from "react-select";
 import moment from "moment";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -16,15 +15,15 @@ function ApptForm() {
   const [patient, setPatient] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-
-  console.log(startDate);
-
-  const patientNames = allPatients.map(({ name, id }) => ({ id, name }));
-  console.log("Names", patientNames);
-
+ 
+  const patientNames = allPatients.map(({name, id}) => {
+    return <option value={id}>{name}</option>
+})
   function handlePatientChange(selectedPatient) {
+    console.log('Selected Patient', selectedPatient)
     setPatient(selectedPatient);
   }
+  
 
   const momentDateTime = moment(date + time);
 
@@ -50,11 +49,10 @@ function ApptForm() {
     <form onSubmit={handleSubmitForm}>
       <h1>ApptForm</h1>
       <label>Patient</label>
-      <Select
-        className="patient"
-        onChange={handlePatientChange} options={patientNames}>
-       
-    </Select>
+      <select className="patient" onChange={handlePatientChange}>
+        <option> Please Choose a Patient  </option>
+            {patientNames}
+      </select>
       <br></br>
       <label>Reason For Appointment:</label>
       <input
@@ -83,7 +81,7 @@ function ApptForm() {
       <br></br>
       {errors?.map((err) => (
         <p id="errors" key={err}>
-          <h3 style={{color: "red"}}>{err}</h3>
+          <h3 style={{ color: "red" }}>{err}</h3>
         </p>
       ))}
     </form>

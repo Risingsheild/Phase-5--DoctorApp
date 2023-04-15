@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { newPrescription } from "../../features/Prescriptions/prescriptionSlice";
 import { selectUser } from "../../features/Users/userSlice";
+import { addPrescription } from "../../features/Patient/patientSlice";
 
 function PrescrirpionForm({patient, flipped}){
     const [name, setName] = useState('')
@@ -34,7 +35,9 @@ function PrescrirpionForm({patient, flipped}){
         user_id: user.id,
         patient_id: patient.id
     }
+    console.log("P form", payload);
     dispatch(newPrescription(payload))
+    dispatch(addPrescription(payload))
     flipped()
  }
 
