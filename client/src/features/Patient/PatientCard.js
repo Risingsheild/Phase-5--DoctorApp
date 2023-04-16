@@ -18,6 +18,7 @@ function PatientCard({ patient }) {
     </li>
   ));
 
+
   function handleFlipped() {
     setIsFlipped(!isFlipped);
   }

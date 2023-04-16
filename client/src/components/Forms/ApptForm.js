@@ -1,5 +1,3 @@
-import moment from "moment";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { selectUser, addAppointment } from "../../features/Users/userSlice";
@@ -13,30 +11,27 @@ function ApptForm() {
   const [startDate, setStartDate] = useState("");
   const errors = useSelector((state) => state.appointments.errorMessages);
   const [patient, setPatient] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
- 
-  const patientNames = allPatients.map(({name, id}) => {
-    return <option value={id}>{name}</option>
-})
-  function handlePatientChange(selectedPatient) {
-    console.log('Selected Patient', selectedPatient.id)
-    setPatient(selectedPatient);
-  }
-  
 
-  const momentDateTime = moment(date + time);
+  console.log('allPatients', allPatients);
 
-  const dateTime = momentDateTime.format("LLL");
-  console.log(dateTime);
+  const patientNames = allPatients.map(({ first_name, last_name, id }) => {
+    return (
+      <option key={id} value={id}>
+        {first_name} {last_name}
+      </option>
+    );
+  });
 
+  console.log("Patient Names", patientNames);
+  console.log("patient", patient);
   function handleSubmitForm(e) {
     e.preventDefault();
+
     const newAppt = {
       user_id: user.id,
-      patient_id: patientNames.id,
+      patient_id: patient,
       description: description,
-      startDate: dateTime,
+      startDate: startDate,
     };
     dispatch(addAppointment(newAppt));
     dispatch(newAppointment(newAppt));
@@ -44,14 +39,15 @@ function ApptForm() {
     setStartDate("");
     setPatient("");
   }
+  console.log("startDate", startDate);
 
   return (
     <form onSubmit={handleSubmitForm}>
       <h1>ApptForm</h1>
-      <label>Patient</label>
-      <select className="patient" onChange={handlePatientChange}>
-        <option> Please Choose a Patient  </option>
-            {patientNames}
+      <label>Patient: </label>
+      <select className="patient" value={patient} onChange={(e) => setPatient(e.target.value)}>
+        <option> Please Choose a Patient </option>
+        {patientNames}
       </select>
       <br></br>
       <label>Reason For Appointment:</label>
@@ -64,19 +60,14 @@ function ApptForm() {
       />
 
       <br></br>
-      <label>Date of Appointment:</label>
+      <label>Date and Time of Appointment:</label>
       <input
         id="date"
-        type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
+        type="datetime-local"
+        value={startDate}
+        onChange={(e) => setStartDate(e.target.value)}
       />
-      <label>Time of Appointment:</label>
-      <input
-        type="time"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
-      />
+      <br />
       <button type="submit"> Create New Appointment </button>
       <br></br>
       {errors?.map((err) => (

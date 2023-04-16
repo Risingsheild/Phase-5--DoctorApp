@@ -25,22 +25,19 @@ export const newPatient = createAsyncThunk(
 const patientsSlice = createSlice({
   name: 'patients',
   initialState: {
-    entities: {
-      prescriptions: [],
-      // patients: [],
-    },
+    entities: [],
     errorMessages: null
   },
   reducers: {
-    addPrescription(state, action) {
-      return {
-        ...state,
-        entities: {
-          ...state.entities,
-          prescriptions: [...state.entities.prescriptions, action.payload],
-        },
-      };
-    },
+    // addPrescription(state, action) {
+    //   return {
+    //     ...state,
+    //     entities: {
+    //       ...state.entities,
+    //       prescriptions: [...state.entities.prescriptions, action.payload],
+    //     },
+    //   };
+    // },
   },
   extraReducers(builder) {
     builder

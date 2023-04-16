@@ -55,6 +55,7 @@ const usersSlice = createSlice({
     // },
 
     addAppointment(state, action) {
+      console.log('UserSlice', action.payload);
       return {
         ...state,
         entities: {

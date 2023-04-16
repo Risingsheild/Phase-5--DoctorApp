@@ -6,7 +6,7 @@ class AppointmentsController < ApplicationController
     end
 
     def create 
-        appointments = @current_user.appointments.create!(appt_params)
+        appointment = @current_user.appointments.create!(appt_params)
         if appointment
             render json: appointment, status: :created
         else 
