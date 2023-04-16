@@ -12,7 +12,6 @@ function ApptForm() {
   const errors = useSelector((state) => state.appointments.errorMessages);
   const [patient, setPatient] = useState("");
 
-  console.log('allPatients', allPatients);
 
   const patientNames = allPatients.map(({ first_name, last_name, id }) => {
     return (
@@ -22,8 +21,6 @@ function ApptForm() {
     );
   });
 
-  console.log("Patient Names", patientNames);
-  console.log("patient", patient);
   function handleSubmitForm(e) {
     e.preventDefault();
 
@@ -39,7 +36,6 @@ function ApptForm() {
     setStartDate("");
     setPatient("");
   }
-  console.log("startDate", startDate);
 
   return (
     <form onSubmit={handleSubmitForm}>

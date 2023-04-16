@@ -28,7 +28,14 @@ const patientsSlice = createSlice({
     entities: [],
     errorMessages: null
   },
-  reducers: {
+  reducers: { 
+    addPatient(state, action) {
+      return {
+        ...state,
+        entities: { ...state.entities.patients, patient: action.payload },
+      };
+    },
+
     // addPrescription(state, action) {
     //   return {
     //     ...state,
@@ -50,6 +57,6 @@ const patientsSlice = createSlice({
   },
 });
 
-export const {addPrescription} = patientsSlice.actions;
+export const {addPrescription, addPatient} = patientsSlice.actions;
 
 export default patientsSlice.reducer

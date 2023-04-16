@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { selectUser, ondeleteAppointment } from "../Users/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { ondeleteAppointment } from "../Users/userSlice";
+import { useDispatch } from "react-redux";
 import { deleteAppointment } from "./appointmentSlice";
 import EditAppt from "./EditAppt";
 
 function AppointmentCard({ appointment }) {
-  const user = useSelector(selectUser)
+  // const user = useSelector(selectUser)
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
 
