@@ -25,7 +25,7 @@ function AppointmentCard({ appointment }) {
   ) : (
     <div key={appointment.id} className='appointment'>
       <div id='appointment-inner'>
-        <div className='appointment-front'><h3>{appointment.startDate}</h3><p>{appointment.patient.name}</p></div>
+        <div className='appointment-front'><h3>Appointment: {appointment.startDate}</h3><p>{appointment.patient.first_name} {appointment.patient.last_name}</p></div>
         <div key={appointment.description} id='appointment-back'>{appointment.description}</div>
       </div>
     </div>

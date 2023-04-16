@@ -20,7 +20,7 @@ function ApptForm() {
     return <option value={id}>{name}</option>
 })
   function handlePatientChange(selectedPatient) {
-    console.log('Selected Patient', selectedPatient)
+    console.log('Selected Patient', selectedPatient.id)
     setPatient(selectedPatient);
   }
   
@@ -34,7 +34,7 @@ function ApptForm() {
     e.preventDefault();
     const newAppt = {
       user_id: user.id,
-      patient_id: patient.id,
+      patient_id: patientNames.id,
       description: description,
       startDate: dateTime,
     };

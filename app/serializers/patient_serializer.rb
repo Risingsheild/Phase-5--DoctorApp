@@ -1,5 +1,5 @@
 class PatientSerializer < ActiveModel::Serializer
-  attributes :id, :name, :phone, :dob, :appointments, :prescriptions
+  attributes :id, :first_name, :last_name, :phone, :dob, :appointments, :prescriptions
 
   
   # has_many :users, through: :appointments

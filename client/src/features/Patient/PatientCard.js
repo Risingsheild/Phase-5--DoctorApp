@@ -28,7 +28,7 @@ function PatientCard({ patient }) {
     <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal'>
     <div className="Card" onClick={handleFlipped}>
       <div className="patientHeader">
-     <h3> Name: {patient.name}</h3> <p>Date of Birth : ({patient.dob})</p>{" "}
+     <h3> Name: {patient.first_name} {patient.last_name}</h3> <p>Date of Birth : ({patient.dob})</p>{" "}
      <p> Phone Number : {patient.phone}</p>
       Patient Appointments:
       {patientAppt}

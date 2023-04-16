@@ -4,20 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { newPatient } from "../../features/Patient/patientSlice";
 
 function PatientForm() {
-  const [name, setName] = useState("");
+  const [first_name, setFirst_Name] = useState("");
+  const [last_name, setLast_Name] = useState("");
   const [dob, setDob] = useState("");
   const [phone, setPhone] = useState("");
   const errors = useSelector((state) => state.patients.errorMessages);
 
   const dispatch = useDispatch();
-  console.log(name, dob, phone);
+  console.log(first_name, dob, phone);
 
   function handleSubmitPatient(e) {
     e.preventDefault();
     const payload = {
       dob: dob,
       phone: phone,
-      name: name,
+      first_name: first_name,
+      last_name: last_name
       };
     console.log('PAyload', payload);
     dispatch(newPatient(payload));
@@ -29,9 +31,15 @@ function PatientForm() {
       <label>Name:</label>
       <input
         type="text"
-        placeholder="First and Last Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        placeholder="First Name"
+        value={first_name}
+        onChange={(e) => setFirst_Name(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Last Name"
+        value={last_name}
+        onChange={(e) => setLast_Name(e.target.value)}
       />
 
       <label htmlFor="dob">DOB:</label>

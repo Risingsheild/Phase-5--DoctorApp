@@ -19,7 +19,8 @@ puts " seeding Patients"
 
 20.times do 
     Patient.create(
-        name: Faker::Name.name,
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name,
         phone: Faker::PhoneNumber.cell_phone,
         dob: Faker::Date.birthday(min_age: 18, max_age: 85)
     )
@@ -31,7 +32,7 @@ puts "Seeding Appointments"
             user_id: 1,
             patient_id: rand(1..10),
             description: Faker::Cannabis.health_benefit,
-            startDate: Faker::Time.between(from: DateTime.now - 1, to: Date.today + 20, format: :long)
+            startDate: Faker::Time.forward(days: 25,  period: :day, format: :long)
         )
     end 
 
@@ -40,7 +41,7 @@ puts "Seeding Appointments"
             user_id: 2,
             patient_id: rand(11..20),
             description: Faker::Cannabis.health_benefit,
-            startDate: Faker::Time.between(from: DateTime.now - 1, to: Date.today + 20, format: :long)
+            startDate: Faker::Time.forward(days: 25,  period: :day, format: :long)
         )
     end 
 

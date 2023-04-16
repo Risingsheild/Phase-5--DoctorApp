@@ -4,7 +4,8 @@ class AppointmentSerializer < ActiveModel::Serializer
   def patient
     p = {}
     p[:id] = self.object.patient.id
-    p[:name] = self.object.patient.name
+    p[:first_name] = self.object.patient.first_name
+    p[:last_name] = self.object.patient.last_name
     p[:dob] = self.object.patient.dob
     p[:phone] = self.object.patient.phone
     p

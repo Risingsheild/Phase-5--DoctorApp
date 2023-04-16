@@ -26,7 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_17_195127) do
   end
 
   create_table "patients", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
     t.string "phone"
     t.string "dob"
     t.integer "user_id"
