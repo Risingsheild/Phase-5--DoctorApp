@@ -17,7 +17,7 @@ function NavBar() {
     <div className="navbar">
       {user && !user.errors ? (
         <div>
-          <header className="header">Hello, Dr. {user.username}</header>
+          <h3 className="header">Hello, Dr. {user.username}</h3>
           <div className="navlinks">
             <NavLink to="/"><button>Home</button></NavLink>
             <NavLink to='/appointments'><button>Upcoming Appointments</button></NavLink>

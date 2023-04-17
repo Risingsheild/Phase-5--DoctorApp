@@ -3,6 +3,50 @@
   background-image: url('https://c1.wallpaperflare.com/preview/839/207/808/pill-tablet-pharmacy-medicine.jpg');
 }
 
+input {
+  margin: 5px;
+}
+button {
+  width: 33.33%;
+  padding: 10px;
+  background-color: transparent;
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
+  transition: background-color 0.5s;
+  border: 1px double;
+  border-bottom: 3px solid rgb(49, 106, 177);
+  cursor: pointer;
+}
+button:hover {
+  color: white;
+  font-weight: bolder;
+  background-color: rgb(49, 106, 177);
+}
+
+
+
+/* button {
+  display: inline-block;
+  background-color: rgb(1, 137, 255);
+  padding: 10px;
+  width: 120px;
+  color: #000000;
+  text-align: center;
+  border: 4px double #000000;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bolder;
+  
+  margin: 5px;
+  -webkit-transition: all 0.5s; 
+  transition: all 0.5s;
+} */
+
+/* button:hover {
+  background-color: #7b38d8;
+} */
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -28,20 +28,21 @@ function PatientForm() {
   return (
     <form onSubmit={handleSubmitPatient}>
       <h3>Patient DemoGraphics Form</h3>
-      <label>Name:</label>
+      <label>First Name:</label>
       <input
         type="text"
         placeholder="First Name"
         value={first_name}
         onChange={(e) => setFirst_Name(e.target.value)}
       />
+      <label>Last Name:</label>
       <input
         type="text"
         placeholder="Last Name"
         value={last_name}
         onChange={(e) => setLast_Name(e.target.value)}
       />
-
+      <br></br>
       <label htmlFor="dob">DOB:</label>
       <input
         type="date"

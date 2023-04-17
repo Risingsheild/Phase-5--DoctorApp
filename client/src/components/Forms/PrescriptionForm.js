@@ -46,6 +46,7 @@ function PrescrirpionForm({ patient, flipped }) {
         value={refills}
         onChange={handleChangeRefills}
       />
+      <br/>
       <button type="submit">Submit New Prescription</button>
       {errors?.map((err) => (
         <p id="errors" key={err}>
