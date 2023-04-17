@@ -58,14 +58,16 @@ const usersSlice = createSlice({
       };
     },
     onUpdateAppointment(state, action) {
-      console.log("userSlice Appt", action.payload);
+      console.log("userSlice Appt", action.payload.appointment.id);
       const updatedAppts = state.entities.appointments.map((appt) => {
-        if (appt.id === action.payload.id) {
+        console.log('apptID', appt.id)
+        if (appt.id === action.payload.appointment.id) {
           return action.payload;
         } else {
           return appt;
         }
-      });
+      })
+      console.log('updated appts', updatedAppts);
       return {
         ...state,
         entities: {
@@ -85,6 +87,25 @@ const usersSlice = createSlice({
           ),
         },
       };
+    },
+    onUpdatePatientPrescriptions(state, action) {
+      console.log("userSlice prescr", action.payload);
+      const updatedPatient = state.entities.patients.map((pts) => {
+        console.log('pts', pts)
+        if (pts.id === action.payload.patient_id) {
+          return action.payload;
+        } else {
+          return pts;
+        }
+      })
+      console.log('updated patient', updatedPatient);
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          appointments: updatedPatient,
+        },
+      }
     },
   },
   extraReducers(builder) {
@@ -128,6 +149,7 @@ export const {
   addAppointment,
   ondeleteAppointment,
   onUpdateAppointment,
+  onUpdatePatientPrescriptions
 } = usersSlice.actions;
 
 export default usersSlice.reducer;

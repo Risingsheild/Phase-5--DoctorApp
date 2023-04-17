@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { updateAppointment } from "./appointmentSlice";
 import { onUpdateAppointment } from "../Users/userSlice";
 
 function EditAppt({ appointment, onExitForm }) {
   //   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  const params = useParams();
-  console.log('Edit', appointment);
 
-  const appt = appointment.params
-  console.log('appt', appt);
+  console.log('Edit', appointment.id);
 
   const [description, setDescription] = useState(appointment.description);
   const [startDate, setStartDate] = useState(appointment.startDate);

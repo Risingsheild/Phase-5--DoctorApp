@@ -8,8 +8,30 @@ import './Appointment.css'
 function AppointmentList() {
   const user = useSelector(selectUser);
 
-   
-    // If no User has No Appts code bellow
+  return (
+    <div>
+      <h2>My Appointments</h2>
+
+      <div className="AppointmentList">
+        {user.appointments.map((a) => (
+          <AppointmentCard
+            key={a.id}
+            appointment={a}
+            startDate={a.startDate}
+            description={a.description}
+            patient={a.patient}
+          />
+        ))}
+        </div>
+    </div>
+  );
+}
+
+export default AppointmentList;
+
+
+//const user = useSelector((state) => state.users.entities);
+    // If no User has No Appts
     
     // const appointments = user.appointments
 
@@ -41,23 +63,4 @@ function AppointmentList() {
     //   }, {})
 
      // console.log('Sorted Appointments', sortedAppointments);
-  return (
-    <div>
-      <h2>My Appointments</h2>
-
-      <div className="AppointmentList">
-        {user.appointments.map((a) => (
-          <AppointmentCard
-            key={a.id}
-            appointment={a}
-            startDate={a.startDate}
-            description={a.description}
-            patient={a.patient}
-          />
-        ))}
-        </div>
-    </div>
-  );
-}
-
-export default AppointmentList;
+  

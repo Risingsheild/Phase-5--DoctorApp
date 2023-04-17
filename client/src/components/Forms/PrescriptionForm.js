@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { newPrescription } from "../../features/Prescriptions/prescriptionSlice";
-import { selectUser } from "../../features/Users/userSlice";
-import { addPrescription } from "../../features/Patient/patientSlice";
+import { selectUser, onUpdatePatientPrescriptions } from "../../features/Users/userSlice";
 
 function PrescrirpionForm({ patient, flipped }) {
   const [name, setName] = useState("");
@@ -10,9 +9,6 @@ function PrescrirpionForm({ patient, flipped }) {
   const errors = useSelector((state) => state.prescriptions.errorMessages);
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
-  console.log("PreFormU", user.id);
-  console.log("PreForm", patient.id);
 
   function handleChangeName(e) {
     setName(e.target.value);
@@ -33,9 +29,8 @@ function PrescrirpionForm({ patient, flipped }) {
       user_id: user.id,
       patient_id: patient.id,
     };
-    console.log("P form", payload);
     dispatch(newPrescription(payload));
-    dispatch(addPrescription(payload));
+    dispatch(onUpdatePatientPrescriptions(payload));
     flipped();
   }
 
