@@ -59,6 +59,7 @@ const usersSlice = createSlice({
     },
     onUpdateAppointment(state, action) {
       console.log("userSlice Appt", action.payload.appointment.id);
+      debugger
       const updatedAppts = state.entities.appointments.map((appt) => {
         console.log('apptID', appt.id)
         if (appt.id === action.payload.appointment.id) {

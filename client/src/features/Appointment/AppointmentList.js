@@ -8,23 +8,21 @@ import './Appointment.css'
 function AppointmentList() {
   const user = useSelector(selectUser);
 
-  return (
-    <div>
-      <h2>My Appointments</h2>
-
-      <div className="AppointmentList">
-        {user.appointments.map((a) => (
-          <AppointmentCard
+  if (user.appointments.length > 0) {
+    return (
+       user.appointments.map((a) => { 
+          return <AppointmentCard
             key={a.id}
             appointment={a}
             startDate={a.startDate}
             description={a.description}
             patient={a.patient}
           />
-        ))}
-        </div>
-    </div>
-  );
+        })
+    )
+  } else {
+    return <h3> Please Make your First Appointment </h3>
+  }
 }
 
 export default AppointmentList;

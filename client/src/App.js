@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
       dispatch(fetchUser())
-    .then(dispatch(fetchPatients()));
+      dispatch(fetchPatients());
   }, [dispatch]);
 
   return (

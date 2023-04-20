@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { selectUser, addAppointment } from "../../features/Users/userSlice";
 import { newAppointment } from "../../features/Appointment/appointmentSlice";
+import { fetchPatients } from '../../features/Patient/patientSlice'
 
 function ApptForm() {
   const dispatch = useDispatch();
@@ -11,6 +12,11 @@ function ApptForm() {
   const [startDate, setStartDate] = useState("");
   const errors = useSelector((state) => state.appointments.errorMessages);
   const [patient, setPatient] = useState("");
+
+  useEffect(()=> {
+    dispatch(fetchPatients());
+  },[dispatch])
+  
 
 
   const patientNames = allPatients.map(({ first_name, last_name, id }) => {

@@ -32,7 +32,7 @@ const patientsSlice = createSlice({
     addPatient(state, action) {
       return {
         ...state,
-        entities: { ...state.entities.patients, patient: action.payload },
+        entities: [...state.entities, action.payload ],
       };
     },
 
