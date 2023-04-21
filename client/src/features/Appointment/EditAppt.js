@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import { useParams } from "react-router-dom";
-import { onUpdateAppointment, updateAppointment} from "../Users/userSlice";
+import { updateAppointment} from "../Users/userSlice";
 
 function EditAppt({ appointment, onExitForm }) {
   //   const user = useSelector(selectUser);
@@ -24,7 +24,7 @@ function EditAppt({ appointment, onExitForm }) {
       appointment: updatedAppt,
     };
     dispatch(updateAppointment(payload));
-    dispatch(onUpdateAppointment(payload))
+    // dispatch(onUpdateAppointment(payload))
     onExitForm();
   }
   return (

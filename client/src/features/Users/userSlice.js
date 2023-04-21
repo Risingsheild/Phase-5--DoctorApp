@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { headers } from "../../Gloabals";
 
 export const fetchUser = createAsyncThunk("users/fetchUser", async () => {
@@ -45,7 +45,7 @@ export const newAppointment = createAsyncThunk(
       headers: headers,
       body: JSON.stringify(payload),
     });
-    return await r.json()
+    return await r.json();
   }
 );
 
@@ -75,31 +75,49 @@ const usersSlice = createSlice({
       patients: [],
       appointments: [],
     },
-    errorMessages: [],
+    // status: 'idle',
+    errorMessages: null,
   },
   reducers: {
- 
-   
-    onUpdateAppointment(state, action) {
-      console.log("userSlice Appt", action.payload.appointment.id);
-      debugger;
-      const updatedAppts = state.entities.appointments.map((appt) => {
-        console.log("apptID", appt.id);
-        if (appt.id === action.payload.appointment.id) {
-          return action.payload;
-        } else {
-          return appt;
-        }
-      });
-      console.log("updated appts", current(updatedAppts));
-      return {
-        ...state,
-        entities: {
-          ...state.entities,
-          appointments: updatedAppts,
-        },
-      };
-    },
+    // addAppt(state, action) {
+    //   console.log(current(state));
+
+    //   // state.entities.appointments.push(action.payload)
+
+    //   // const ptInfo = state.entities.patients.find(pt => pt.id = action.payload.patient_id )
+    //   // action.payload['patient_id'] = ptInfo
+    //   // console.log(ptInfo);
+    //   return {
+    //     ...state,
+    //     entities: {
+    //       ...state.entities,
+    //       appointments: [...state.entities.appointments, action.payload],
+
+    //     },
+
+    //   },
+    //   console.log(current(state))
+    // },
+    // onUpdateAppointment(state, action) {
+    //   console.log("userSlice Appt", action.payload.appointment.id);
+    //   debugger;
+    //   const updatedAppts = state.entities.appointments.map((appt) => {
+    //     console.log("apptID", appt.id);
+    //     if (appt.id === action.payload.appointment.id) {
+    //       return action.payload;
+    //     } else {
+    //       return appt;
+    //     }
+    //   });
+    //   console.log("updated appts", current(updatedAppts));
+    //   return {
+    //     ...state,
+    //     entities: {
+    //       ...state.entities,
+    //       appointments: updatedAppts,
+    //     },
+    //   };
+    // },
 
     ondeleteAppointment(state, action) {
       return {
@@ -138,9 +156,20 @@ const usersSlice = createSlice({
         state.entities = action.payload;
       })
       .addCase(newAppointment.fulfilled, (state, action) => {
-        state.entities.appointments.push(action.payload)
+        state.entities.appointments.push(action.payload);
+      })
+      .addCase(newAppointment.rejected, (state, action)=> {
+          state.errorMessages = action.payload
+      })
+      .addCase(updateAppointment.fulfilled, (state, action) => {
+        if(!action.payload?.id){
+          console.log('Update Not Complete');
+          return
         }
-      )
+        const { id } = action.payload
+        const appts = state.entities.appointments.filter(appt => appt.id !== id)
+        state.entities.appointments = [...appts, action.payload]
+      })
       .addCase(login.fulfilled, (state, action) => {
         if (action.payload.errors) state.errorMessages = action.payload.errors;
         else {

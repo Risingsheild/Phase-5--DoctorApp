@@ -9,26 +9,18 @@ function ApptForm() {
   const allPatients = useSelector((state) => state.patients.entities);
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
-  // const errors = useSelector((state) => state.appointments.errorMessages);
+  // const errors = useSelector((state) => state.errorMessages);
   const [patient, setPatient] = useState("");
 
-  console.log(patient);
-  // const canSave = Boolean(patient) && Boolean(description) && Boolean(startDate)
+  
+  const canSave =
+    Boolean(patient) && Boolean(description) && Boolean(startDate);
 
-
-  const patientNames = allPatients.map(pt => (
+  const patientNames = allPatients.map((pt) => (
     <option key={pt.id} value={pt.id}>
-    {pt.first_name} {pt.last_name}
+      {pt.first_name} {pt.last_name}
     </option>
-
-  ))
-  // const patientNames = allPatients.map(({ first_name, last_name, id }) => {
-  //   return (
-  //     <option key={id} value={patient}>
-  //       {first_name} {last_name}
-  //     </option>
-  //   );
-  // });
+  ));
 
   function handleSubmitForm(e) {
     e.preventDefault();
@@ -50,7 +42,11 @@ function ApptForm() {
     <form onSubmit={handleSubmitForm}>
       <h1>ApptForm</h1>
       <label>Patient: </label>
-      <select className="patient" value={patient} onChange={(e) => setPatient(e.target.value)}>
+      <select
+        className="patient"
+        value={patient}
+        onChange={(e) => setPatient(e.target.value)}
+      >
         <option> Please Choose a Patient </option>
         {patientNames}
       </select>
@@ -73,8 +69,13 @@ function ApptForm() {
         onChange={(e) => setStartDate(e.target.value)}
       />
       <br />
-      <button type="submit"> Create New Appointment </button>
-      <br></br>
+      {canSave ? (
+        <button type="submit"> Create New Appointment </button>
+      ) : (
+        <h3> Please fill in all information to save Appointment </h3>
+      )}
+      {/* <button type="submit" disabled={!canSave}> Create New Appointment </button>
+      <br></br> */}
       {/* {errors?.map((err) => (
         <p id="errors" key={err}>
           <h3 style={{ color: "red" }}>{err}</h3>

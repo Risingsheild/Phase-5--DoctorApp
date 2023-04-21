@@ -26,7 +26,8 @@ const patientsSlice = createSlice({
   name: 'patients',
   initialState: {
     entities: [],
-    errorMessages: null
+    errorMessages: null,
+    status: 'idle'
   },
   reducers: { 
     addPatient(state, action) {
@@ -53,6 +54,7 @@ const patientsSlice = createSlice({
       })
       .addCase(newPatient.fulfilled, (state, action) => {
         if (action.payload.errors) state.errorMessages = action.payload.errors;
+        else state.entities.push(action.payload)
       });
   },
 });
