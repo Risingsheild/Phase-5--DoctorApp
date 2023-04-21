@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { ondeleteAppointment } from "../Users/userSlice";
+import { ondeleteAppointment, deleteAppointment } from "../Users/userSlice";
 import { useDispatch } from "react-redux";
-import { deleteAppointment } from "./appointmentSlice";
 import EditAppt from "./EditAppt";
 
 function AppointmentCard({ appointment }) {

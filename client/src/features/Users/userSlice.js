@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import { headers } from "../../Gloabals";
 
 export const fetchUser = createAsyncThunk("users/fetchUser", async () => {
@@ -37,6 +37,37 @@ export const logout = createAsyncThunk("users/logout", async () => {
   });
 });
 
+export const newAppointment = createAsyncThunk(
+  "appointment/newAppointment",
+  async (payload) => {
+    const r = await fetch("/appointments", {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(payload),
+    });
+    return await r.json()
+  }
+);
+
+export const updateAppointment = createAsyncThunk(
+  "appointment/updateAppointment",
+  async (payload) => {
+    const r = await fetch(`/appointments/${payload.appointment.id}`, {
+      method: "PATCH",
+      headers: headers,
+      body: JSON.stringify(payload.appointment),
+    });
+    return await r.json();
+  }
+);
+export const deleteAppointment = createAsyncThunk(
+  "appointment/delete",
+  (appointmentId) =>
+    fetch(`/appointments/${appointmentId}`, {
+      method: "DELETE",
+    })
+);
+
 const usersSlice = createSlice({
   name: "users",
   initialState: {
@@ -47,35 +78,27 @@ const usersSlice = createSlice({
     errorMessages: [],
   },
   reducers: {
-    addAppointment(state, action) {
-      console.log('UserSlice', action.payload);
-      return {
-        ...state,
-        entities: {
-          ...state.entities,
-          appointments: [...state.entities.appointments, action.payload],
-        },
-      };
-    },
+ 
+   
     onUpdateAppointment(state, action) {
       console.log("userSlice Appt", action.payload.appointment.id);
-      debugger
+      debugger;
       const updatedAppts = state.entities.appointments.map((appt) => {
-        console.log('apptID', appt.id)
+        console.log("apptID", appt.id);
         if (appt.id === action.payload.appointment.id) {
           return action.payload;
         } else {
           return appt;
         }
-      })
-      console.log('updated appts', updatedAppts);
+      });
+      console.log("updated appts", current(updatedAppts));
       return {
         ...state,
         entities: {
           ...state.entities,
           appointments: updatedAppts,
         },
-      }
+      };
     },
 
     ondeleteAppointment(state, action) {
@@ -92,21 +115,21 @@ const usersSlice = createSlice({
     onUpdatePatientPrescriptions(state, action) {
       console.log("userSlice prescr", action.payload);
       const updatedPatient = state.entities.patients.map((pts) => {
-        console.log('pts', pts)
+        console.log("pts", pts);
         if (pts.id === action.payload.patient_id) {
           return action.payload;
         } else {
           return pts;
         }
-      })
-      console.log('updated patient', updatedPatient);
+      });
+      console.log("updated patient", updatedPatient);
       return {
         ...state,
         entities: {
           ...state.entities,
           appointments: updatedPatient,
         },
-      }
+      };
     },
   },
   extraReducers(builder) {
@@ -114,6 +137,10 @@ const usersSlice = createSlice({
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.entities = action.payload;
       })
+      .addCase(newAppointment.fulfilled, (state, action) => {
+        state.entities.appointments.push(action.payload)
+        }
+      )
       .addCase(login.fulfilled, (state, action) => {
         if (action.payload.errors) state.errorMessages = action.payload.errors;
         else {
@@ -147,10 +174,10 @@ export const selectErrors = (state) => {
 };
 
 export const {
-  addAppointment,
+  addAppt,
   ondeleteAppointment,
   onUpdateAppointment,
-  onUpdatePatientPrescriptions
+  onUpdatePatientPrescriptions,
 } = usersSlice.actions;
 
 export default usersSlice.reducer;

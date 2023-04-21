@@ -1,43 +1,46 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { selectUser, addAppointment } from "../../features/Users/userSlice";
-import { newAppointment } from "../../features/Appointment/appointmentSlice";
-import { fetchPatients } from '../../features/Patient/patientSlice'
+import { useState } from "react";
+import { newAppointment } from "../../features/Users/userSlice";
+import { nanoid } from "@reduxjs/toolkit";
 
 function ApptForm() {
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
   const allPatients = useSelector((state) => state.patients.entities);
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
-  const errors = useSelector((state) => state.appointments.errorMessages);
+  // const errors = useSelector((state) => state.appointments.errorMessages);
   const [patient, setPatient] = useState("");
 
-  useEffect(()=> {
-    dispatch(fetchPatients());
-  },[dispatch])
-  
+  console.log(patient);
+  // const canSave = Boolean(patient) && Boolean(description) && Boolean(startDate)
 
 
-  const patientNames = allPatients.map(({ first_name, last_name, id }) => {
-    return (
-      <option key={id} value={id}>
-        {first_name} {last_name}
-      </option>
-    );
-  });
+  const patientNames = allPatients.map(pt => (
+    <option key={pt.id} value={pt.id}>
+    {pt.first_name} {pt.last_name}
+    </option>
+
+  ))
+  // const patientNames = allPatients.map(({ first_name, last_name, id }) => {
+  //   return (
+  //     <option key={id} value={patient}>
+  //       {first_name} {last_name}
+  //     </option>
+  //   );
+  // });
 
   function handleSubmitForm(e) {
     e.preventDefault();
 
     const newAppt = {
-      user_id: user.id,
+      id: nanoid(),
       patient_id: patient,
       description: description,
       startDate: startDate,
     };
-    dispatch(addAppointment(newAppt));
     dispatch(newAppointment(newAppt));
+    // dispatch(addAppt(newAppt))
     setDescription("");
     setStartDate("");
     setPatient("");
@@ -72,11 +75,11 @@ function ApptForm() {
       <br />
       <button type="submit"> Create New Appointment </button>
       <br></br>
-      {errors?.map((err) => (
+      {/* {errors?.map((err) => (
         <p id="errors" key={err}>
           <h3 style={{ color: "red" }}>{err}</h3>
         </p>
-      ))}
+      ))} */}
     </form>
   );
 }

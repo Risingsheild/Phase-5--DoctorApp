@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { addPatient } from "../../features/Users/userSlice";
-import { newPatient, addPatient } from "../../features/Patient/patientSlice";
+import { newPatient, addPatient, fetchPatients } from "../../features/Patient/patientSlice";
 
 function PatientForm() {
   const [first_name, setFirst_Name] = useState("");
@@ -11,7 +11,9 @@ function PatientForm() {
   const errors = useSelector((state) => state.patients.errorMessages);
 
   const dispatch = useDispatch();
-  console.log(first_name, dob, phone);
+  useEffect(() => {
+  dispatch(fetchPatients())
+},[dispatch])
 
   function handleSubmitPatient(e) {
     e.preventDefault();

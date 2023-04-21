@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import { useParams } from "react-router-dom";
-import { updateAppointment } from "./appointmentSlice";
-import { onUpdateAppointment } from "../Users/userSlice";
+import { onUpdateAppointment, updateAppointment} from "../Users/userSlice";
 
 function EditAppt({ appointment, onExitForm }) {
   //   const user = useSelector(selectUser);

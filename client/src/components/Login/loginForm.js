@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { login } from "../../features/Users/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-
+import { fetchPatients } from "../../features/Patient/patientSlice";
 
 import {
   Button,
@@ -12,6 +12,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+
 
 function LoginForm(){
     const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function LoginForm(){
     function handleSubmit(e){
         e.preventDefault();
         dispatch(login(userData));
+        dispatch(fetchPatients())
     }
 
 
