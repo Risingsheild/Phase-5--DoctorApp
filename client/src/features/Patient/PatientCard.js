@@ -39,7 +39,7 @@ function PatientCard({ patient }) {
       </button>
       </div>
       <div className="Card">
-     <h3> Name: {patient.name}</h3>
+     <h3> Name: {patient.first_name} {patient.last_name}</h3>
       Patient Prescriptions:
       {patientPrescriptions}
       <h5>Add New Prescription Here:</h5>

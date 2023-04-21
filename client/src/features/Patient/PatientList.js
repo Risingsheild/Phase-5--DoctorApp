@@ -7,8 +7,10 @@ import "./PatientCard.css";
 function PatientList() {
   const user = useSelector(selectUser);
   // const [search, setSearch] = useState("");
-  
 
+  const orderedPts = user.patients
+    .slice()
+    .sort((a, b) => a.last_name.localeCompare(b.last_name));
   // const filterPatients = () => {
   //   if (search === "") {
   //     return user.patients;
@@ -18,7 +20,6 @@ function PatientList() {
   //     );
   //   }
   // };
-  // console.log("My patients in patient list", filterPatients);
   // const handleChange = (e) => {
   //   setSearch(e.target.value);
   // };
@@ -38,7 +39,7 @@ function PatientList() {
       </label> */}
 
       <div className="patientList">
-        {user.patients.map((p) => (
+        {orderedPts.map((p) => (
           <PatientCard
             key={p.id}
             patient={p}
