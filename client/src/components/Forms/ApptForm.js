@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { newAppointment } from "../../features/Users/userSlice";
 import { nanoid } from "@reduxjs/toolkit";
+import { fetchPatients } from "../../features/Patient/patientSlice";
 
 function ApptForm() {
   const dispatch = useDispatch();
@@ -12,7 +13,10 @@ function ApptForm() {
   // const errors = useSelector((state) => state.errorMessages);
   const [patient, setPatient] = useState("");
 
-  
+  useEffect(() => {
+  dispatch(fetchPatients())
+},[dispatch])
+
   const canSave =
     Boolean(patient) && Boolean(description) && Boolean(startDate);
 

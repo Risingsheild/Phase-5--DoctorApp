@@ -32,7 +32,7 @@ puts "Seeding Appointments"
             user_id: 1,
             patient_id: rand(1..10),
             description: Faker::Cannabis.health_benefit,
-            startDate: Faker::Time.forward(days: 25,  period: :day, format: :long)
+            startDate: Faker::Time.forward(days: 25,  period: :day)
         )
     end 
 
@@ -41,7 +41,7 @@ puts "Seeding Appointments"
             user_id: 2,
             patient_id: rand(11..20),
             description: Faker::Cannabis.health_benefit,
-            startDate: Faker::Time.forward(days: 25,  period: :day, format: :long)
+            startDate: Faker::Time.forward(days: 25,  period: :day)
         )
     end 
 

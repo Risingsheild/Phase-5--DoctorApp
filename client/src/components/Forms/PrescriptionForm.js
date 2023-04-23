@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser, onUpdatePatientPrescriptions, newPrescription } from "../../features/Users/userSlice";
+import { selectUser, newPrescription } from "../../features/Users/userSlice";
 
 function PrescrirpionForm({ patient, flipped }) {
   const [name, setName] = useState("");
@@ -29,7 +29,6 @@ function PrescrirpionForm({ patient, flipped }) {
       patient_id: patient.id,
     };
     dispatch(newPrescription(payload));
-    // dispatch(onUpdatePatientPrescriptions(payload));
     flipped();
   }
 
@@ -37,7 +36,8 @@ function PrescrirpionForm({ patient, flipped }) {
     <form onSubmit={handleSubmit}>
       <label>Prescription Name:</label>
       <input type="text" value={name} onChange={handleChangeName} />
-      <label>Number of Refills</label>
+      <br/>
+      <label>Number of Refills:</label>
       <input
         type="number"
         pattern="[0-9]*"

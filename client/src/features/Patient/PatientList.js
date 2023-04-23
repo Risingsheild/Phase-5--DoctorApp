@@ -37,7 +37,7 @@ function PatientList() {
           value={search}
         />
       </label> */}
-
+    
       <div className="patientList">
         {orderedPts.map((p) => (
           <PatientCard

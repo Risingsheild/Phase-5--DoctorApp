@@ -96,7 +96,7 @@ const usersSlice = createSlice({
 
     //   // state.entities.appointments.push(action.payload)
 
-    //   // const ptInfo = state.entities.patients.find(pt => pt.id = action.payload.patient_id )
+    //   // const ptInfo = state.entities.patients.find(pt => pt.id =  action.payload.patient_id )
     //   // action.payload['patient_id'] = ptInfo
     //   // console.log(ptInfo);
     //   return {
