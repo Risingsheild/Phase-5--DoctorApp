@@ -22,6 +22,7 @@ export const newPatient = createAsyncThunk(
   }
 );
 
+
 const patientsSlice = createSlice({
   name: 'patients',
   initialState: {

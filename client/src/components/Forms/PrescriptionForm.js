@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { newPrescription } from "../../features/Prescriptions/prescriptionSlice";
-import { selectUser, onUpdatePatientPrescriptions } from "../../features/Users/userSlice";
+import { selectUser, onUpdatePatientPrescriptions, newPrescription } from "../../features/Users/userSlice";
 
 function PrescrirpionForm({ patient, flipped }) {
   const [name, setName] = useState("");
   const [refills, setRefills] = useState("");
-  const errors = useSelector((state) => state.prescriptions.errorMessages);
+  // const errors = useSelector((state) => state.prescriptions.errorMessages);
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
@@ -30,7 +29,7 @@ function PrescrirpionForm({ patient, flipped }) {
       patient_id: patient.id,
     };
     dispatch(newPrescription(payload));
-    dispatch(onUpdatePatientPrescriptions(payload));
+    // dispatch(onUpdatePatientPrescriptions(payload));
     flipped();
   }
 
@@ -48,11 +47,11 @@ function PrescrirpionForm({ patient, flipped }) {
       />
       <br/>
       <button type="submit">Submit New Prescription</button>
-      {errors?.map((err) => (
+      {/* {errors?.map((err) => (
         <p id="errors" key={err}>
           <h3 style={{ color: "red" }}>{err}</h3>
         </p>
-      ))}
+      ))} */}
     </form>
   );
 }

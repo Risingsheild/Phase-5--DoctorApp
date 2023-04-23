@@ -68,6 +68,18 @@ export const deleteAppointment = createAsyncThunk(
     })
 );
 
+export const newPrescription = createAsyncThunk(
+  "prescription/newPrescription",
+  async (payload) => {
+    const r = await fetch("/prescriptions", {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(payload),
+    });
+    return await r.json();
+  }
+);
+
 const usersSlice = createSlice({
   name: "users",
   initialState: {
@@ -130,25 +142,26 @@ const usersSlice = createSlice({
         },
       };
     },
-    onUpdatePatientPrescriptions(state, action) {
-      console.log("userSlice prescr", action.payload);
-      const updatedPatient = state.entities.patients.map((pts) => {
-        console.log("pts", pts);
-        if (pts.id === action.payload.patient_id) {
-          return action.payload;
-        } else {
-          return pts;
-        }
-      });
-      console.log("updated patient", updatedPatient);
-      return {
-        ...state,
-        entities: {
-          ...state.entities,
-          appointments: updatedPatient,
-        },
-      };
-    },
+    // onUpdatePatientPrescriptions(state, action) {
+    //   console.log("userSlice prescr", action.payload);
+    //   const updatedPatient = state.entities.patients.map((pts) => {
+    //     console.log("pts", pts);
+    //     if (pts.id === action.payload.patient_id) {
+    //       return action.payload;
+    //     } else {
+    //       return pts;
+    //     }
+    //   });
+    //   debugger
+    //   console.log("updated patient", updatedPatient);
+    //   return {
+    //     ...state,
+    //     entities: {
+    //       ...state.entities,
+    //       appointments: updatedPatient,
+    //     },
+    //   };
+    // },
   },
   extraReducers(builder) {
     builder
@@ -177,6 +190,15 @@ const usersSlice = createSlice({
           state.entities = action.payload;
           state.errorMessages = null;
         }
+      })
+      .addCase(newPrescription.fulfilled, (state, action)=> {
+        if(!action.payload.patient?.id){
+          console.log('Prescription not Added');
+          return
+        }
+        const {id} = action.payload.patient
+        const patientlist = state.entities.patients.filter(pt => pt.id !== id)
+        state.entities.patients = [...patientlist, action.payload.patient]
       })
       .addCase(signup.fulfilled, (state, action) => {
         if (action.payload.errors) state.errorMessages = action.payload.errors;

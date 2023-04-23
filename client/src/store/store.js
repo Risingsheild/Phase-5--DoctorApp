@@ -10,7 +10,7 @@ export const store = configureStore({
   reducer: {
     users: usersReducer,
     patients: patientsReducer,
-    prescriptions: prescriptionReducer,
-    appointments: appointmentsReducer
+    // prescriptions: prescriptionReducer,
+    // appointments: appointmentsReducer
   },
 });
