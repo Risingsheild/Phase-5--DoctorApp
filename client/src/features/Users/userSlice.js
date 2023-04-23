@@ -156,7 +156,8 @@ const usersSlice = createSlice({
         state.entities = action.payload;
       })
       .addCase(newAppointment.fulfilled, (state, action) => {
-        state.entities.appointments.push(action.payload);
+        state.entities.appointments.push(action.payload)
+        state.entities.patients.push(action.payload.patient);
       })
       .addCase(newAppointment.rejected, (state, action)=> {
           state.errorMessages = action.payload

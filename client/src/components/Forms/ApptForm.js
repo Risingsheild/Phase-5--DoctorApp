@@ -72,7 +72,7 @@ function ApptForm() {
       {canSave ? (
         <button type="submit"> Create New Appointment </button>
       ) : (
-        <h3> Please fill in all information to save Appointment </h3>
+        <h3> Please fill in all information to save the appointment </h3>
       )}
       {/* <button type="submit" disabled={!canSave}> Create New Appointment </button>
       <br></br> */}
