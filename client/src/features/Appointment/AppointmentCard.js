@@ -17,6 +17,9 @@ function AppointmentCard({ appointment }) {
     dispatch(deleteAppointment(appointment.id))
   }
 
+
+  // appointment.startDate.split('-')[0]}/{appointment.startDate.split('-')[1]}/{appointment.startDate.split('-')[2].split('T')[0]
+
   return  (
   <div className='Card'>
   {isEditing ? (

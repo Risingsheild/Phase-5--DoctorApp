@@ -192,14 +192,12 @@ const usersSlice = createSlice({
         }
       })
       .addCase(newPrescription.fulfilled, (state, action)=> {
-        if(!action.payload.patient?.id){
-          console.log('Prescription not Added');
-          return
-        }
+        if (action.payload.errors) state.errorMessages = action.payload.errors
+        else {
         const {id} = action.payload.patient
         const patientlist = state.entities.patients.filter(pt => pt.id !== id)
         state.entities.patients = [...patientlist, action.payload.patient]
-      })
+      }})
       .addCase(signup.fulfilled, (state, action) => {
         if (action.payload.errors) state.errorMessages = action.payload.errors;
         else {

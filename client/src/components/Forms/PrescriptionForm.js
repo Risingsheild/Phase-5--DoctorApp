@@ -5,9 +5,12 @@ import { selectUser, newPrescription } from "../../features/Users/userSlice";
 function PrescrirpionForm({ patient, flipped }) {
   const [name, setName] = useState("");
   const [refills, setRefills] = useState("");
-  // const errors = useSelector((state) => state.prescriptions.errorMessages);
+  // const errors = useSelector(selectErrors)
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
+  const canSave =
+    Boolean(name) && Boolean(refills);
 
   function handleChangeName(e) {
     setName(e.target.value);
@@ -46,7 +49,11 @@ function PrescrirpionForm({ patient, flipped }) {
         onChange={handleChangeRefills}
       />
       <br/>
-      <button type="submit">Submit New Prescription</button>
+      {canSave ? (
+        <button type="submit"> Submit New Prescription </button>
+      ) : (
+        <h5> Complete form to save new prescription </h5>
+      )}
       {/* {errors?.map((err) => (
         <p id="errors" key={err}>
           <h3 style={{ color: "red" }}>{err}</h3>

@@ -42,7 +42,7 @@ function PatientCard({ patient }) {
      <h3> Name: {patient.first_name} {patient.last_name}</h3>
       Patient Prescriptions:
       {patientPrescriptions}
-      <h5>Add New Prescription Here:</h5>
+      <h5>Prescribe New Prescription Here:</h5>
       <PrescrirpionForm patient={patient} flipped={handleFlipped} />
       <br></br>
       <button onClick={handleFlipped}> Click for Patient Demographics & Appointments</button>

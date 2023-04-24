@@ -20,8 +20,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      dispatch(fetchUser());
-      dispatch(fetchPatients());
+    dispatch(fetchPatients());
+    dispatch(fetchUser());  
   }, [dispatch]);
 
   return (
