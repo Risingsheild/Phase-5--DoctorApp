@@ -1,7 +1,7 @@
 # Phase 5 Project (Capstone)
 
 This is the repository for my Phase 5 Single Web Page Doctor Application 
-![ScreenShot small] (https://waftengine.org/public/blog/1B5EE4D5D773F8A-RR.jpg) 
+![ScreenShot small](https://waftengine.org/public/blog/1B5EE4D5D773F8A-RR.jpg) 
 
 ## Requirements
 
