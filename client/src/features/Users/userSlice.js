@@ -170,7 +170,14 @@ const usersSlice = createSlice({
       })
       .addCase(newAppointment.fulfilled, (state, action) => {
         state.entities.appointments.push(action.payload)
-        state.entities.patients.push(action.payload.patient);
+          if(state.entities.patients.find(pt => pt.id === action.payload.patient.id)){
+            const { id } = action.payload.patient
+            const patient = state.entities.patients.filter(pt => pt.id !== id)
+            state.entities.patients = [...patient, action.payload.patient]
+          } else {
+            state.entities.patients.push(action.payload.patient)
+          }
+          
       })
       .addCase(newAppointment.rejected, (state, action)=> {
           state.errorMessages = action.payload
