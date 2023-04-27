@@ -19,7 +19,10 @@ function PatientForm() {
       first_name: first_name,
       last_name: last_name
       };
-    console.log('PAyload', payload);
+      setDob('')
+      setFirst_Name('')
+      setLast_Name('')
+      setPhone('')
     dispatch(newPatient(payload));
     dispatch(addPatient(payload));
   }

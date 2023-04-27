@@ -33,6 +33,8 @@ function PrescrirpionForm({ patient, flipped }) {
     };
     dispatch(newPrescription(payload));
     flipped();
+    setName('')
+    setRefills('')
   }
 
   return (
