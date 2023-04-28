@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { addPatient } from "../../features/Users/userSlice";
-import { newPatient, addPatient } from "../../features/Patient/patientSlice";
+import { newPatient } from "../../features/Patient/patientSlice";
+import { nanoid } from "@reduxjs/toolkit";
 
 function PatientForm() {
   const [first_name, setFirst_Name] = useState("");
@@ -14,6 +14,7 @@ function PatientForm() {
  function handleSubmitPatient(e) {
     e.preventDefault();
     const payload = {
+      id: nanoid(),
       dob: dob,
       phone: phone,
       first_name: first_name,
@@ -24,7 +25,6 @@ function PatientForm() {
       setLast_Name('')
       setPhone('')
     dispatch(newPatient(payload));
-    dispatch(addPatient(payload));
   }
   return (
     <form onSubmit={handleSubmitPatient}>

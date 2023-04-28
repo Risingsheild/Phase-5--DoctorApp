@@ -31,12 +31,6 @@ const patientsSlice = createSlice({
     status: 'idle'
   },
   reducers: { 
-    addPatient(state, action) {
-      return {
-        ...state,
-        entities: [...state.entities, action.payload ],
-      };
-    },
 
     // addPrescription(state, action) {
     //   return {

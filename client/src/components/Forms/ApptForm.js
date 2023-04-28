@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { newAppointment } from "../../features/Users/userSlice";
 import { nanoid } from "@reduxjs/toolkit";
-import { fetchPatients } from "../../features/Patient/patientSlice";
 
 function ApptForm() {
   const dispatch = useDispatch();
@@ -10,12 +9,9 @@ function ApptForm() {
   const allPatients = useSelector((state) => state.patients.entities);
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
-  // const errors = useSelector((state) => state.errorMessages);
+  const [isValidDate, setIsValidDate] = useState(false)
+  const [errors, setErrors] = useState('')
   const [patient, setPatient] = useState("");
-
-  useEffect(() => {
-  dispatch(fetchPatients())
-},[dispatch])
 
   const canSave =
     Boolean(patient) && Boolean(description) && Boolean(startDate);
@@ -26,9 +22,21 @@ function ApptForm() {
     </option>
   ));
 
+  const handleDateChange = (e) => {
+    const inputDate = new Date (e.target.value)
+    const currentDate = new Date()
+
+    if (inputDate > currentDate ){
+      setIsValidDate(true)
+    } else {
+      setIsValidDate(false)
+    }
+    setStartDate(e.target.value)
+  }
+
   function handleSubmitForm(e) {
     e.preventDefault();
-
+    if (isValidDate) {
     const newAppt = {
       id: nanoid(),
       patient_id: patient,
@@ -36,11 +44,12 @@ function ApptForm() {
       startDate: startDate,
     };
     dispatch(newAppointment(newAppt));
-    // dispatch(addAppt(newAppt))
     setDescription("");
     setStartDate("");
     setPatient("");
-  }
+  } else {
+    setErrors(<div style={{color: 'red'}}><h2>Not A Valid Date</h2><p>Make Sure Appt is for a Future Date</p></div>)
+  }}
 
   return (
     <form onSubmit={handleSubmitForm}>
@@ -70,7 +79,7 @@ function ApptForm() {
         id="date"
         type="datetime-local"
         value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
+        onChange={handleDateChange}
       />
       <br />
       {canSave ? (
@@ -78,13 +87,8 @@ function ApptForm() {
       ) : (
         <h3> Please fill in all information to save the appointment </h3>
       )}
-      {/* <button type="submit" disabled={!canSave}> Create New Appointment </button>
-      <br></br> */}
-      {/* {errors?.map((err) => (
-        <p id="errors" key={err}>
-          <h3 style={{ color: "red" }}>{err}</h3>
-        </p>
-      ))} */}
+      <br></br>
+      {errors}
     </form>
   );
 }
