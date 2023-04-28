@@ -187,9 +187,11 @@ const usersSlice = createSlice({
           console.log('Update Not Complete');
           return
         }
-        const { id } = action.payload
-        const appts = state.entities.appointments.filter(appt => appt.id !== id)
+        const appts = state.entities.appointments.filter(appt => appt.id !== action.payload.id)
         state.entities.appointments = [...appts, action.payload]
+        const ptList = state.entities.patients.filter(pt => pt.id !== action.payload.patient.id)
+        state.entities.patients = [...ptList, action.payload.patient]
+        
       })
       .addCase(login.fulfilled, (state, action) => {
         if (action.payload.errors) state.errorMessages = action.payload.errors;
