@@ -1,5 +1,5 @@
 class Patient < ApplicationRecord
-    has_many :appointments
+    has_many :appointments dependent: :destroy
     has_many :users, through: :appointments
     has_many :prescriptions, dependent: :destroy
 
